@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/Baselayout.astro';
+import Skills from '../components/Skillbar.astro';
+import Card from '../components/Cardintro.astro';
+import { introData, socials, profileImage } from '../content/data/data.ts';
+---
+
+<BaseLayout title="Cristian Rodil Zuniga - Portafolio"> <!-- 🔹 Agregar un título aquí -->
+  <!-- Sección con imagen -->
+  <section class="text-center mb-8">
+    <img src={profileImage} alt="Foto de Cristian Rodil Zuniga" class="w-32 h-32 rounded-full mx-auto border-4 border-gray-300 shadow-md" />
+  </section>
+
+  <!-- Tarjetas de introducción y sobre mí -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <Card title={introData.introduction.title} description={introData.introduction.description} />
+    <Card title={introData.aboutMe.title} description={introData.aboutMe.description} />
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">Habilidades</h2>
+    <Skills />
+  </section>
+
+  <section class="text-center">
+    <h2 class="text-2xl font-bold mb-4">Redes Sociales</h2>
+    <div class="flex justify-center space-x-4">
+      {
+        socials.map((social) => (
+          <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d={social.icon} />
+            </svg>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

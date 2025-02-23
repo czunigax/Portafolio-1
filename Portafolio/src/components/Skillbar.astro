@@ -1,0 +1,31 @@
+---
+import { skills } from '../content/data/data.ts';
+---
+<div class="space-y-6">
+  {
+   Object.entries(skills).map(([category, skillsList]) => (
+   <div>
+       <h3 class="text-xl font-bold mb-2">{category}</h3>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+         {
+      skillsList.map((skill) => (
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <h4 class="text-lg font-semibold">{skill.name}</h4>
+       <div class="relative w-full bg-gray-200 rounded-full h-2.5">
+          <div
+            class="bg-blue-600 h-2.5 rounded-full relative"
+              style={`width: ${skill.level}%`}
+                >
+             <span class="absolute right-0 top-[-20px] text-xs font-bold text-blue-700">
+                {skill.level}%
+              </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    ))
+  }
+</div>

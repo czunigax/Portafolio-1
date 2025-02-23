@@ -1,0 +1,22 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/Baselayout.astro';
+import ProjectCard from '../components/Projectcard.astro';
+
+const projects: CollectionEntry<"projects">[] = await getCollection('projects'); // 👈 Agregar tipo explícito
+---
+
+<BaseLayout title="Proyectos">
+  <h1 class="text-3xl font-bold mb-6">Proyectos</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {projects.map((project: CollectionEntry<"projects">) => (  // 👈 Agregar tipo explícito en .map()
+<ProjectCard
+  title={project.data.title}
+  description={project.data.description}
+  slug={project.slug}
+  image={project.data.image} 
+/>
+    ))}
+  </div>
+</BaseLayout>
+

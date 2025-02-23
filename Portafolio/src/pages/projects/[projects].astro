@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/Baselayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// 🟢 Definir `getStaticPaths()`
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project: CollectionEntry<'projects'>) => ({
+    params: { projects: project.slug }, // 👈 Coincide con `[projects].astro`
+  }));
+}
+
+// 🟢 Obtener el parámetro de la URL
+const { projects } = Astro.params as { projects: string };
+
+// 🟢 Obtener todos los proyectos
+const projectList = await getCollection('projects');
+
+// 🟢 Buscar el proyecto actual
+const currentProject: CollectionEntry<'projects'> | undefined = projectList.find(
+  (p: CollectionEntry<'projects'>) => p.slug === projects
+);
+
+if (!currentProject) {
+  throw new Error(`No se encontró el proyecto con el slug: ${projects}`);
+}
+
+// 🟢 Renderizar el contenido antes de usarlo
+const projectContent = await currentProject.render();
+
+---
+
+<BaseLayout title={currentProject.data.title}>
+  <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+    {currentProject.data.image && (
+<img 
+  src={currentProject.data.image} 
+  alt={currentProject.data.title} 
+/>
+    )}
+    <h2 class="text-2xl font-bold mb-2">{currentProject.data.title}</h2>
+    <div class="prose prose-lg text-black-700 mb-4">
+      <projectContent.Content />
+    </div>
+    
+  </article>
+</BaseLayout>
