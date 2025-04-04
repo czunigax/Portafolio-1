@@ -62,46 +62,38 @@ export const socials: Social[] = [
 ] as const;
 
 export type NavItem = {
-  titleEs: string;
-  titleEn: string;
+  title: string;
   href: string;
   subitems?: NavItem[];
 };
 
 export const navItems: NavItem[] = [
   {
-    titleEs: "Inicio",
-    titleEn: "Home",
+    title: "Inicio",
     href: "/",
   },
   {
-    titleEs: "Proyectos",
-    titleEn: "Projects",
+    title: "Proyectos",
     href: "/projects",
     subitems: [
       {
-        titleEs: "ERP Repuestos",
-        titleEn: "ERP Auto Parts",
+        title: "ERP Repuestos",
         href: "/projects/erp-repuestos",
       },
       {
-        titleEs: "Matrícula UNAH",
-        titleEn: "UNAH Enrollment",
+        title: "Matrícula UNAH",
         href: "/projects/matricula",
       },
       {
-        titleEs: "ERP Ferretería",
-        titleEn: "ERP Hardware Store",
+        title: "ERP Ferretería",
         href: "/projects/erp-ferreteria",
       },
       {
-        titleEs: "Sistema de Colas",
-        titleEn: "Queue System",
+        title: "Sistema de Colas",
         href: "/projects/simulacion",
       },
       {
-        titleEs: "ERP de Funeraria",
-        titleEn: "Queue System",
+        title: "ERP de Funeraria",
         href: "/projects/erp-funeraria",
       },
     ],
