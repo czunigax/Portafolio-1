@@ -96,6 +96,14 @@ export const navItems: NavItem[] = [
         title: "ERP de Funeraria",
         href: "/projects/erp-funeraria",
       },
+      {
+        title: "Arquitectura e commerce",
+        href: "/projects/arquitectura-terraform",
+      },
+      {
+        title: "CSV de Pokemon",
+        href: "/projects/pokemon",
+      },
     ],
   },
 ] as const;
